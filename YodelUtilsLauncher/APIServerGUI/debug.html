@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- UIkit CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.18/dist/css/uikit.min.css" />
+
+        <!-- UIkit JS -->
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.18/dist/js/uikit.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.18/dist/js/uikit-icons.min.js"></script>
+        <script>
+
+            //get's a query parameter by name from current url
+            function getUrlParameter(name) {
+                name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                var results = regex.exec(location.search);
+                return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+            };
+            
+            window.RadioDevice = getUrlParameter("RadioDevice");
+            window.Port = getUrlParameter("Port");
+            window.Debug = getUrlParameter("displaydebug") == "" ? false : true;
+            
+        </script>
+
+    </head>
+    <body>
+        <div class="uk-section-primary uk-preserve-color uk-width-1-1">
+            <div class="uk-padding uk-section uk-light">
+                <h2 class="uk-heading uk-heading-bullet uk-heading-default uk-text-bold">Yodel API Server Debug Output</h2>
+                <div class="uk-width-1-3">
+                    <label>Maximum Saved Messages:</label>
+                    <input class="uk-input" type="number" id="MaxSaved" value=100>
+                </div>
+            </div>
+        </div>
+        <div class="uk-grid uk-background-secondary" uk-height-viewport="expand: true" uk-grid>
+            
+            <div class="uk-width-1-2 uk-background-secondary">
+                <div class="uk-container uk-padding uk-light">
+                    <div class="uk-text-center">
+                        <h2 class="uk-heading uk-light">Incoming</h2>
+                        <hr>
+                    </div>
+                    <ul class="uk-margin" uk-accordion id="incoming">
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="uk-width-1-2 uk-background-secondary">
+                <div class="uk-container uk-padding uk-light">
+                    <div class="uk-text-center">
+                        <h2 class="uk-heading uk-light">Outgoing</h2>
+                        <hr>
+                    </div>
+                    <ul class="uk-margin" uk-accordion id="outgoing">
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+    <footer>
+        <script src="render.js"></script>
+    </footer>
+</html>
