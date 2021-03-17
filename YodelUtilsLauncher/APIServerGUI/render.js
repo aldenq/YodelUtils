@@ -24,8 +24,32 @@ function buildAccordionElement(json, dest){
    li.appendChild(div);
    dest.appendChild(li);
 }
+
+// Testing:
 for(let i = 0; i < 15;i++){
     buildAccordionElement({name:"test", number:"128"}, document.getElementById("incoming"));
     buildAccordionElement({name:"test2", number:"126"}, document.getElementById("outgoing"));
 
+}
+
+function stringifyNonsense(nonsense){
+    return String.fromCharCode.apply(null, nonsense);
+}
+
+function stdout(data){
+    console.log(stringifyNonsense(data));
+}
+function stderr(data){
+    console.log(stringifyNonsense(data));
+}
+function err(error){
+    throw error;
+}
+
+if (window.Debug){   
+    window.launcher.executeAPIServer(
+        [window.RadioDevice, "--portno", window.Port],
+        err, stdout, stderr);
+}else{
+    location.href = "silent.html";
 }

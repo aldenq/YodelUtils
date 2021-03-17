@@ -47,7 +47,17 @@
             </form>
         </div>
     </body>
-    <footer>
+    <footer class="uk-container">
         <script src="render.js"></script>
+        <h3 class="uk-heading uk-margin">iwconfig:</h3>
+        <pre><code id="footer"></code></pre>
+        <script>
+            window.launcher.getIWConfig(
+                (error, stdout, stderr)=>{
+                    document.getElementById('footer').appendChild(
+                            document.createTextNode(stdout)
+                        );
+                });
+        </script>
     </footer>
 </html>

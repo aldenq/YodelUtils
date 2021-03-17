@@ -2,8 +2,8 @@ const electron = require('electron');
 const ipcRenderer = electron.ipcRenderer;
 const contextBridge = electron.contextBridge;
 const BrowserWindow = electron.BrowserWindow;
-const {spawn} = require('child_process');
-
+const {spawn, exec} = require('child_process');
+const sudo = require("sudo-prompt");
 
 
 contextBridge.exposeInMainWorld("launcher", {
@@ -14,12 +14,17 @@ contextBridge.exposeInMainWorld("launcher", {
     },
 
     executeAPIServer: (options, error, stdout, stderr)=>{
-        options.splice(0,0,'APIServerGUI/Server/main.py');
+        options.splice(0,0,'/home/philokaulkin/Documents/GitHub/YodelUtils/YodelUtilsLauncher/APIServerGUI/Server/main.py');
         options.splice(0,0,'python3');
-        let process = spawn("sudo", options);
+        let process = spawn("pkexec", options);
         process.stdout.on("data", stdout);
         process.stderr.on("data", stderr);
         process.on("error", error);
+        return process;
+    },
+
+    getIWConfig: (fn)=>{
+        return exec("iwconfig", fn);
     }
 
 });
