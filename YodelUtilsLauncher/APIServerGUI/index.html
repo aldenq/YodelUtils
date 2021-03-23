@@ -29,13 +29,18 @@
                 </div>
 
                 <div class="uk-margin">
+                    <label class="uk-form-label" for="form-stacked-text">Host IP: </label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" required="true" name="HostIP" value="localhost" id="form-stacked-text" type="text" placeholder="Host IP...">
+                    </div>
+                </div>
+
+                <div class="uk-margin">
                     <label class="uk-form-label" for="form-stacked-text">Port: </label>
                     <div class="uk-form-controls">
                         <input class="uk-input" required='true' name="Port" id="form-stacked-text" type="number" value="5560">
                     </div>
                 </div>
-            
-                
             
                 <div class="uk-margin">
                     <div class="uk-form-label">Display Debug Info:</div>
@@ -48,7 +53,7 @@
         </div>
     </body>
     <footer class="uk-container">
-        <script src="render.js"></script>
+        <!--<script src="render.js"></script>-->
         <h3 class="uk-heading uk-margin">iwconfig:</h3>
         <pre><code id="footer"></code></pre>
         <script>

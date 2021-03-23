@@ -8,6 +8,25 @@
         <!-- UIkit JS -->
         <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.18/dist/js/uikit.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.18/dist/js/uikit-icons.min.js"></script>
+
+        <script>
+            //get's a query parameter by name from current url
+            function getUrlParameter(name) {
+                name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                var results = regex.exec(location.search);
+                return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+            };
+            
+            window.RadioDevice = getUrlParameter("RadioDevice");
+            window.Port = getUrlParameter("Port");
+            window.Debug = getUrlParameter("displaydebug") == "" ? false : true;
+            window.HostIP = getUrlParameter("HostIP");
+
+            window.launcher.executeAPIServer(
+            [window.RadioDevice, "--portno", window.Port, "-H", window.HostIP],
+            (err)=>{throw err}, stdout=>{}, stderr=>{});
+        </script>
     </head>
     <body>
          
@@ -28,6 +47,6 @@
         </div>
     </body>
     <footer>
-
+        
     </footer>
 </html>
